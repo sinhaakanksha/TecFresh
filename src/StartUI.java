@@ -114,14 +114,15 @@ public class StartUI extends javax.swing.JFrame {
        displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_ShopkeeperPortalActionPerformed
 
-    public static void main(String args[]) {
+    
+    /*public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CustomerPortal;

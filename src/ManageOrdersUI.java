@@ -22,7 +22,7 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
 
     public void viewOrders() {
         
-        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("src/order.csv");
+        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
         while (model.getRowCount() > 0) {
@@ -181,14 +181,14 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_TableMouseClicked
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;

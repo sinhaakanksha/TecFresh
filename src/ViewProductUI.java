@@ -33,8 +33,9 @@ public class ViewProductUI extends javax.swing.JFrame {
         
         for(int i=0;i<prod2.size();i++)
         {
-            model.insertRow(model.getRowCount(), new Object[]{i+1,prod2.get(i).getProductId(),prod2.get(i).getName(),prod2.get(i).getPrice(),prod2.get(i).getCategory(),prod2.get(i).getDiscount(),prod2.get(i).getStock()});
-            
+            model.insertRow(model.getRowCount(), new Object[]{i+1,prod2.get(i).getProductId()
+                    ,prod2.get(i).getName(),prod2.get(i).getPrice(),prod2.get(i).getCategory()
+                    ,prod2.get(i).getDiscount(),prod2.get(i).getStock()});
         }
         
     }
@@ -418,7 +419,7 @@ public class ViewProductUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        dMgr.mainMgr.catalogMgr.doHousekeeping("src/catalog.csv");
+        dMgr.mainMgr.catalogMgr.doHousekeeping("catalog.csv");
         //dMgr.doHouseKeeping();
         dMgr.showShopkeeperMain();
     }//GEN-LAST:event_jButton1ActionPerformed

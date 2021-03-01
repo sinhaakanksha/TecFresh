@@ -267,14 +267,14 @@ public class SearchProductUI extends javax.swing.JFrame {
         displayMgr.showProductScreen();
     }//GEN-LAST:event_ShowProductActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RowItem;

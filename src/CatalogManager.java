@@ -27,8 +27,9 @@ public class CatalogManager {
 
     public void catalogInit()
     {
-        mMgr.searchMgr.searchInit("src/catalog.csv");
+        mMgr.searchMgr.searchInit("catalog.csv");
         prod1 = mMgr.searchMgr.getProductList();
+        //System.out.println(prod1.size());
     }
     
     
@@ -51,7 +52,7 @@ public class CatalogManager {
     public void addProduct(Catalog cg)
     {
         
-        System.out.println(prod1.size());//0
+        //System.out.println(prod1.size());//0
         this.prod1.add(cg);
         System.out.println(prod1.size());//1
     }
@@ -65,6 +66,7 @@ public class CatalogManager {
     public boolean doHousekeeping(String filename)
     {
         ArrayList<Catalog> prod1 = mMgr.catalogMgr.getAllProducts();
+        //System.out.println(prod1.size());
         try  {
             BufferedWriter bfw = new BufferedWriter(new FileWriter(filename));
             for(int i=0;i<this.prod1.size();i++)

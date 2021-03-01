@@ -41,7 +41,7 @@ public class DisplayManager {
 
     public void showStartUI() {
         hideAll();
-        mainMgr.searchMgr.searchInit("src/catalog.csv");
+        mainMgr.searchMgr.searchInit("catalog.csv");
         SU.setVisible(true);
         //anotherUI.setVisible(false);
     }

@@ -192,17 +192,15 @@ public class ShopkeeperMainUI extends JFrame {
         displayMgr.showOrderScreen();
     }//GEN-LAST:event_ViewOrderActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
               
             }
         });
-        
- 
-        
-    }
+  
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProduct;

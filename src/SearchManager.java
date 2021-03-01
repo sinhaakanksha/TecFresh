@@ -14,7 +14,7 @@ public class SearchManager {
         //this.init("");
         list = new ArrayList<>();
         filterlist = new ArrayList<>();
-        searchInit("src/catalog.csv");
+        searchInit("catalog.csv");
     }
     
     public boolean searchInit(String filename){
@@ -28,7 +28,6 @@ public class SearchManager {
             while((line = br.readLine()) != null)   //returns a Boolean value 
             {  
                 String[] catalog = line.split(splitBy);    // use comma as separator
-                
                 /**System.out.println("Product Name: "+product[0]+",Product Price: "
                         +product[1]+",Category: "+product[2]+",Discount: "+product[3]);*/ 
                 

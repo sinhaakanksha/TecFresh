@@ -104,7 +104,8 @@ public class OrderManager {
                 // use comma as separator
                 if (!map.containsKey(arr[0])) {
                     map.put(arr[0], new ArrayList<>());
-
+                }
+                
                     Product p = new Product();
                     p.NameSetter(arr[1]);
                     p.QuantitySetter(Integer.parseInt(arr[2]));
@@ -112,7 +113,7 @@ public class OrderManager {
                     map.get(arr[0]).add(p);
                     //o.setOrder(pd);
                     //orderList.add(o);
-                }
+                
             }
         } catch (IOException e) {
             e.printStackTrace();

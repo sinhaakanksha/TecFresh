@@ -26,7 +26,8 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         constraints.anchor = GridBagConstraints.NORTHWEST;
         int j = 0;
         
-        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("src/order.csv");
+        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
+        
         //System.out.println(list.size());
         
         jPanel3.removeAll();
@@ -269,7 +270,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         // TODO addToCart your handling code here:
         Status.setText("ORDER CONFIRMED");
         displayMgr.mainMgr.catalogMgr.updateStock(ord);
-        displayMgr.mainMgr.catalogMgr.doHousekeeping("src/catalog.csv");
+        displayMgr.mainMgr.catalogMgr.doHousekeeping("catalog.csv");
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -282,13 +283,13 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_HomeActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

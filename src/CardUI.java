@@ -296,14 +296,14 @@ public class CardUI extends javax.swing.JFrame {
         displayMgr.showSearchScreen();
     }//GEN-LAST:event_BackActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

@@ -265,7 +265,7 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         } else {
 
             jLabel4.setText("Your order has been placed !");
-            displayMgr.mainMgr.orderMgr.Confirm(cname.getText(), address.getText(), no.getText(),"src/order.csv");
+            displayMgr.mainMgr.orderMgr.Confirm(cname.getText(), address.getText(), no.getText(),"order.csv");
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
@@ -285,14 +285,14 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         displayMgr.showStartUI();
     }//GEN-LAST:event_HomeActionPerformed
 
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-//                new PlaceOrderUI(  new DisplayManager() ).setVisible(true);
+                new PlaceOrderUI(  new DisplayManager() ).setVisible(true);
             }
         });
-    }
+    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
