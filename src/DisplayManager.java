@@ -1,21 +1,15 @@
-
-import java.util.ArrayList;
-import javax.swing.JFrame;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
- * @author user
+ * @author Sandeep-Das-og
  */
 public class DisplayManager {
 
-    /*private OrderManager orderMgr;
-    private SearchManager searchMgr;
-    private CatalogManager catalogMgr;*/
     SearchProductUI SPU;
     StartUI SU;
     CardUI CU;
@@ -43,7 +37,6 @@ public class DisplayManager {
         hideAll();
         mainMgr.searchMgr.searchInit("catalog.csv");
         SU.setVisible(true);
-        //anotherUI.setVisible(false);
     }
 
     public void showShopkeeperMain() {
@@ -60,7 +53,6 @@ public class DisplayManager {
 
     public void showCard() {
         hideAll();
-        //card.cardDetails(id, name, price, discount);
         CU.setVisible(true);
     }
 
@@ -78,13 +70,11 @@ public class DisplayManager {
 
     public void ShowDetails() {
         hideAll();
-        //od.Show(id);
         ODU.setVisible(true);
     }
 
     public void ShowInventoryScreen() {
         hideAll();
-        //vp.populateData(catalogMgr.getAllProducts());
         VPU.setVisible(true);
     }
 

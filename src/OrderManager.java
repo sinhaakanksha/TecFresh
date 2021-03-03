@@ -1,3 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author sinhaakanksha
+ */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,22 +18,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import javax.swing.JFrame;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author user
- */
 public class OrderManager {
 
-    /*static*/ int id;
+    int id;
     private ArrayList<Product> cart = new ArrayList<>();
     private ArrayList<Order> orderList = new ArrayList<>();
     ArrayList<Product> prod1 = new ArrayList<>();
@@ -32,13 +30,12 @@ public class OrderManager {
 
     public OrderManager() {
         orderInit();
-        id = ThreadLocalRandom.current().nextInt(1000,999999999);
+        id = ThreadLocalRandom.current().nextInt(1000, 999999999);
     }
 
     public void orderInit() {
         cart = new ArrayList<>();
         orderList = new ArrayList<>();
-        //id=1123;
     }
 
     public void Add(String name, int quantity, int price) {
@@ -49,8 +46,6 @@ public class OrderManager {
         item.TotalSetter(quantity * price);
         cart.add(item);
 
-        //cart.add(item);
-        //System.out.println(cart.size());
     }
 
     public void Delete(String name) {
@@ -77,15 +72,14 @@ public class OrderManager {
     public ArrayList viewOrder(String filename) {
         ArrayList<Product> pd = new ArrayList<>();
         Map<String, ArrayList<Product>> map = new HashMap<>();
-        
+
         orderList.clear();
         String line = "";
         String splitBy = ",";
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
 
-            while ((line = br.readLine()) != null) //returns a Boolean value 
-            {
+            while ((line = br.readLine()) != null) {
                 String[] arr = line.split(splitBy);
 
                 if (arr.length > 4) {
@@ -101,37 +95,25 @@ public class OrderManager {
                     continue;
                 }
 
-                // use comma as separator
                 if (!map.containsKey(arr[0])) {
                     map.put(arr[0], new ArrayList<>());
                 }
-                
-                    Product p = new Product();
-                    p.NameSetter(arr[1]);
-                    p.QuantitySetter(Integer.parseInt(arr[2]));
-                    p.TotalSetter(Integer.parseInt(arr[3]));
-                    map.get(arr[0]).add(p);
-                    //o.setOrder(pd);
-                    //orderList.add(o);
-                
+
+                Product p = new Product();
+                p.NameSetter(arr[1]);
+                p.QuantitySetter(Integer.parseInt(arr[2]));
+                p.TotalSetter(Integer.parseInt(arr[3]));
+                map.get(arr[0]).add(p);
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        for(var i:orderList){
+
+        for (var i : orderList) {
             i.setOrder(map.get(i.getID()));
         }
 
-        /*for (var p : map.entrySet()) {
-            System.out.println(p.getKey());
-            pd.addAll(p.getValue());
-            for (var q : p.getValue()) {
-                System.out.println(q.NameGetter());
-            }
-        }*/
-        
-        
         return orderList;
     }
 
@@ -139,8 +121,7 @@ public class OrderManager {
         int sum = 0;
         Order order = new Order();
         order.setOrderId(id);
-        
-        
+
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ");
         order.setName(cname);
@@ -149,7 +130,6 @@ public class OrderManager {
         order.setDate(formatter.format(date));
         order.setStatus("pending");
 
-        //System.out.println(getCart().size());
         order.setOrder(this.getCart());
 
         for (int i = 0; i < cart.size(); i++) {
@@ -157,16 +137,11 @@ public class OrderManager {
         }
 
         order.setTotal(sum);
-        /*orderList.add(orderList);*/
-
-        //System.out.println(this.orderList.size());
-        //prod1 = this.getCart();
         try {
             prod1 = order.getOrder();
 
             BufferedWriter bfw = new BufferedWriter(new FileWriter(filename, true));
             bfw.append(order.getID());
-            System.out.println(order.getID());
             bfw.append(',');
             bfw.append(order.getName());
             bfw.append(',');
@@ -181,8 +156,6 @@ public class OrderManager {
             bfw.newLine();
 
             for (int i = 0; i < prod1.size(); i++) {
-                //bfw.write(this.prod1.get(i).stringify());
-
                 bfw.append(order.getID());
                 bfw.append(',');
                 bfw.append(prod1.get(i).NameGetter());
@@ -197,20 +170,7 @@ public class OrderManager {
             System.out.println("somethings wrong");
         }
         ++id;
-        //System.out.println(orderList.size());
         cart.clear();
-    }
-
-    public void Disp() {
-//        for (int i = 0; i < orderList.size(); i++) {
-//            // if(ORDER.get(i).getID()==(oid)){
-//            System.out.println(OR.get(i).getOrderId() + " " + ORDER.get(i).getAddress() + " " + ORDER.get(i).getDate());
-//            for (int j = 0; j < OD.size(); j++) {
-//                System.out.println(OD.get(j).NameGetter() + " " + OD.get(j).QuantityGetter() + " " + OD.get(j).PriceGetter() + " " + OD.get(j).TotalGetter());
-//            }
-//            System.out.println(ORDER.get(i).getTotal());
-//            //}
-//        }
     }
 
 }

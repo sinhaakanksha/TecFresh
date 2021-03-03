@@ -6,38 +6,45 @@
 
 /**
  *
- * @author user
+ * @author sinhaakanksha
  */
 public class Product {
-    
-       String productName=null;
-       int Quantity=0;
-       int Price=0;
-       int totalPrice=0;
-       
-    public void NameSetter(String name){
-        this.productName=name;
-       }
-    public void QuantitySetter(int q){
-        this.Quantity=q;
-       }
-    public void PriceSetter(int pr){
-        this.Price=pr;
-       }
-    public void TotalSetter(int t){
-        this.totalPrice=t;
-       }
-    public String NameGetter(){
+
+    String productName = null;
+    int Quantity = 0;
+    int Price = 0;
+    int totalPrice = 0;
+
+    public void NameSetter(String name) {
+        this.productName = name;
+    }
+
+    public void QuantitySetter(int q) {
+        this.Quantity = q;
+    }
+
+    public void PriceSetter(int pr) {
+        this.Price = pr;
+    }
+
+    public void TotalSetter(int t) {
+        this.totalPrice = t;
+    }
+
+    public String NameGetter() {
         return productName;
     }
-    public int QuantityGetter(){
+
+    public int QuantityGetter() {
         return Quantity;
     }
-    public int PriceGetter(){
+
+    public int PriceGetter() {
         return Price;
     }
-    public int TotalGetter(){
+
+    public int TotalGetter() {
         return totalPrice;
     }
-    
+
 }

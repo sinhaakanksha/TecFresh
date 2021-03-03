@@ -1,14 +1,14 @@
 
+/**
+ * @author Mistuk2000
+ */
+
 import static java.lang.String.valueOf;
 import java.util.ArrayList;
-import static java.util.Collections.list;
 import javax.swing.table.DefaultTableModel;
 
 public final class ManageOrdersUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ManageOrdersUI
-     */
     private DisplayManager displayMgr;
     private Object rowData[] = new Object[5];
 
@@ -21,7 +21,7 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
     }
 
     public void viewOrders() {
-        
+
         ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
 
@@ -53,6 +53,7 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
 
         jPanel1.setBackground(new java.awt.Color(216, 236, 176));
 
@@ -161,7 +162,7 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ViewOrder)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,23 +173,19 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewOrderActionPerformed
-        // TODO addToCart your handling code here:
-        // new OrderDetailsUI(dMgr,id).setVisible(true);
-        // this.dispose();
         int id = Integer.parseInt(jLabel4.getText());
         displayMgr.ODU.Show(id);
         displayMgr.ShowDetails();
     }//GEN-LAST:event_ViewOrderActionPerformed
 
     private void TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableMouseClicked
-        // TODO addToCart your handling code here:
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         int SelectedRow = Table.getSelectedRow();
 
@@ -198,18 +195,8 @@ public final class ManageOrdersUI extends javax.swing.JFrame {
     }//GEN-LAST:event_TableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    /*public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;

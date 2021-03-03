@@ -1,18 +1,25 @@
 
+/**
+ * @author sinhaakanksha
+ */
+
 import java.awt.GridBagConstraints;
-import java.awt.TextArea;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.ArrayList;
+import java.util.logging.Level;
 import javax.swing.JTextArea;
 
 public class OrderDetailsUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form OrderDetailsUI
-     */
     GridBagConstraints constraints = new GridBagConstraints();
 
     private DisplayManager displayMgr;
-
+    ArrayList<Product> prod1 = new ArrayList<>();
     Order ord;
 
     public OrderDetailsUI(DisplayManager displayMgr) {
@@ -25,15 +32,13 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.NORTHWEST;
         int j = 0;
-        
+
         ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
-        
-        //System.out.println(list.size());
-        
+
         jPanel3.removeAll();
         jPanel3.revalidate();
         jPanel3.repaint();
-        
+
         for (int i = 0; i < list.size(); i++) {
             if (Integer.parseInt(list.get(i).getID()) == id) {
 
@@ -46,8 +51,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 constraints.weightx = 1;
                 constraints.weighty = 1;
                 jPanel3.add(field, constraints);
-                
-                
+
                 JTextArea field1 = new JTextArea();
                 field1.setLineWrap(true);
                 constraints.gridy = j++;
@@ -57,8 +61,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 constraints.weightx = 1;
                 constraints.weighty = 1;
                 jPanel3.add(field1, constraints);
-                
-                
+
                 JTextArea field2 = new JTextArea();
                 field2.setLineWrap(true);
                 constraints.gridy = j++;
@@ -68,8 +71,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 constraints.weightx = 1;
                 constraints.weighty = 1;
                 jPanel3.add(field2, constraints);
-                
-                
+
                 JTextArea field4 = new JTextArea();
                 field4.setLineWrap(true);
                 constraints.gridy = j++;
@@ -79,7 +81,6 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 constraints.weightx = 1;
                 constraints.weighty = 1;
                 jPanel3.add(field4, constraints);
-                //System.out.println(list.get(i).viewOrder().size());
 
                 JTextArea field3 = new JTextArea();
                 field3.setLineWrap(true);
@@ -92,11 +93,9 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 jPanel3.add(field3, constraints);
 
                 ArrayList<Product> p = list.get(i).getOrder();
-                System.out.println(p.size());    //0
-                
-                
+
                 ord = list.get(i);
-                //System.out.println(ord.getTotal());
+
                 for (int k = 0; k < p.size(); k++) {
                     JTextArea field5 = new JTextArea();
                     field5.setLineWrap(true);
@@ -113,7 +112,6 @@ public class OrderDetailsUI extends javax.swing.JFrame {
 
             }
         }
-        //System.out.println(list.size());
     }
 
     @SuppressWarnings("unchecked")
@@ -136,6 +134,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
 
         jPanel1.setBackground(new java.awt.Color(216, 236, 176));
 
@@ -269,29 +268,73 @@ public class OrderDetailsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO addToCart your handling code here:
         Status.setText("ORDER CONFIRMED");
         displayMgr.mainMgr.catalogMgr.updateStock(ord);
+        
+        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getID() == null ? ord.getID() == null : list.get(i).getID().equals(ord.getID())){
+                list.get(i).setStatus("confirmed");
+                
+            }
+           
+        }
+        
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter("order.csv");
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(OrderDetailsUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
+        for( int i=0;i<list.size();i++){
+            
+         try {
+            prod1 = list.get(i).getOrder();
+            BufferedWriter bfw = new BufferedWriter(new FileWriter("order.csv",true));
+            bfw.append(list.get(i).getID());
+            
+            bfw.append(',');
+            bfw.append(list.get(i).getName());
+            bfw.append(',');
+            bfw.append(list.get(i).getPhone());
+            bfw.append(',');
+            bfw.append(list.get(i).getAddress());
+            bfw.append(',');
+            bfw.append(list.get(i).getDate());
+            bfw.append(',');
+            bfw.append(list.get(i).getStatus());
+
+            bfw.newLine();
+
+            for (int j = 0; j < prod1.size(); j++) {
+                bfw.append(list.get(i).getID());
+                bfw.append(',');
+                bfw.append(prod1.get(j).NameGetter());
+                bfw.append(',');
+                bfw.append(String.valueOf(prod1.get(j).QuantityGetter()));
+                bfw.append(',');
+                bfw.append(String.valueOf(prod1.get(j).TotalGetter()));
+                bfw.newLine();
+            }
+            bfw.close();
+        } catch (IOException e) {
+            System.out.println("somethings wrong");
+        }}
+        
         displayMgr.mainMgr.catalogMgr.doHousekeeping("catalog.csv");
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-
         displayMgr.showOrderScreen();
     }//GEN-LAST:event_BackActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-
         displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_HomeActionPerformed
-
-    /*public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

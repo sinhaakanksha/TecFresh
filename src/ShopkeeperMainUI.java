@@ -6,22 +6,20 @@
 
 /**
  *
- * @author mistu
+ * @author Mistuk2000
  */
 import javax.swing.*;
 import java.awt.event.*;
 
 public class ShopkeeperMainUI extends JFrame {
 
-    /**
-     * Creates new form NewJFrame2
-     */
     DisplayManager displayMgr;
+
     public ShopkeeperMainUI(DisplayManager displayMgr) {
         initComponents();
-        this.displayMgr=displayMgr; 
+        this.displayMgr = displayMgr;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -51,6 +49,7 @@ public class ShopkeeperMainUI extends JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
         setPreferredSize(new java.awt.Dimension(650, 600));
         getContentPane().setLayout(new java.awt.FlowLayout());
 
@@ -182,34 +181,19 @@ public class ShopkeeperMainUI extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewEditInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewEditInventoryActionPerformed
-        // TODO addToCart your handling code here:
-        //new VeiwProduct(mgr).setVisible(true);
-        
         displayMgr.mainMgr.catalogMgr.catalogInit();
         displayMgr.VPU.populateData(displayMgr.mainMgr.searchMgr.getProductList());
         displayMgr.ShowInventoryScreen();
     }//GEN-LAST:event_ViewEditInventoryActionPerformed
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
-        //displayMgr.mainMgr.catalogMgr.catalogInit();
         displayMgr.ShowCatalogScreen();
     }//GEN-LAST:event_AddProductActionPerformed
 
     private void ViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewOrderActionPerformed
-
         displayMgr.MOU.viewOrders();
         displayMgr.showOrderScreen();
     }//GEN-LAST:event_ViewOrderActionPerformed
-
-    /*public static void main(String args[]) {
-      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-              
-            }
-        });
-  
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddProduct;

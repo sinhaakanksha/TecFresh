@@ -6,13 +6,10 @@
 
 /**
  *
- * @author user
+ * @author sinhaakanksha
  */
 public class CardUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CardUI
-     */
     private DisplayManager displayMgr;
 
     public CardUI(DisplayManager displayMgr) {
@@ -63,6 +60,7 @@ public class CardUI extends javax.swing.JFrame {
         disc = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
 
         jPanel1.setBackground(new java.awt.Color(216, 236, 176));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 560));
@@ -263,15 +261,13 @@ public class CardUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TocartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TocartActionPerformed
-        // TODO addToCart your handling code here:
-
         displayMgr.mainMgr.orderMgr.Add(pname.getText(), Integer.parseInt(qt.getText()),
                 Integer.parseInt(prc.getText()) - Integer.parseInt(disc.getText()));
         displayMgr.showSearchScreen();
+        qt.setText("1");
     }//GEN-LAST:event_TocartActionPerformed
 
     private void subtractActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subtractActionPerformed
-        // TODO addToCart your handling code here:
         int q = Integer.parseInt(this.qt.getText());
         if (q != 1) {
             q = q - 1;
@@ -280,7 +276,6 @@ public class CardUI extends javax.swing.JFrame {
     }//GEN-LAST:event_subtractActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        // TODO addToCart your handling code here:
         int q = Integer.parseInt(this.qt.getText());
         if (q != 10) {
             q = q + 1;
@@ -289,23 +284,14 @@ public class CardUI extends javax.swing.JFrame {
     }//GEN-LAST:event_addActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-
         displayMgr.showSearchScreen();
+        qt.setText("1");
     }//GEN-LAST:event_HomeActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-
         displayMgr.showSearchScreen();
+        qt.setText("1");
     }//GEN-LAST:event_BackActionPerformed
-
-    /*public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

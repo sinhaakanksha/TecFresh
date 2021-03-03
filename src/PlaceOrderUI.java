@@ -1,4 +1,8 @@
 
+/**
+ * @author sinhaakanksha
+ */
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +18,7 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     }
 
     public void addRowToTable() {
+        int sum = 0;
         ArrayList<Product> list = displayMgr.mainMgr.orderMgr.getCart();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         while (model.getRowCount() > 0) {
@@ -25,8 +30,9 @@ public class PlaceOrderUI extends javax.swing.JFrame {
             rowData[2] = list.get(i).PriceGetter();
             rowData[3] = list.get(i).TotalGetter();
             model.addRow(rowData);
-
+            sum = sum + list.get(i).TotalGetter();
         }
+        total.setText("TOTAL-"+String.valueOf(sum));
     }
 
     @SuppressWarnings("unchecked")
@@ -50,8 +56,10 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         no = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         address = new javax.swing.JTextArea();
+        total = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
 
         jPanel1.setBackground(new java.awt.Color(216, 236, 176));
 
@@ -150,6 +158,8 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         address.setText("Address");
         jScrollPane1.setViewportView(address);
 
+        total.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -187,7 +197,8 @@ public class PlaceOrderUI extends javax.swing.JFrame {
                                 .addComponent(Confirm))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(notify, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -212,14 +223,16 @@ public class PlaceOrderUI extends javax.swing.JFrame {
                             .addComponent(Back)
                             .addComponent(Home))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(no, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Delete)
                             .addComponent(Confirm)
@@ -242,7 +255,6 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        // TODO addToCart your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.removeRow(SelectedRow);
         displayMgr.mainMgr.orderMgr.Delete(jLabel4.getText());
@@ -251,7 +263,6 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DeleteActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO addToCart your handling code here:
         jLabel4.setVisible(true);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         SelectedRow = jTable1.getSelectedRow();
@@ -259,18 +270,32 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
-        // TODO addToCart your handling code here:
+        String phoneNumber = no.getText();
+        String regex = "(0/91)?[7-9][0-9]{9}";
+        String name = cname.getText();
+        String regexName = "\\p{Upper}(\\p{Lower}+\\s?)";
+        String patternName = "(" + regexName + "){2,3}";
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int rows = jTable1.getRowCount();
         if (rows == 0) {
             jLabel4.setText("PLEASE ADD ITEMS TO CART");
-        } else {
+        } 
+        else if(!phoneNumber.matches(regex)) {
+            jLabel4.setText("Please Enter Correct Number");
+        }
+        else if(!name.matches(patternName)){
+            jLabel4.setText("Please Enter Correct Name");
+        }
+        else {
 
             jLabel4.setText("Your order has been placed !");
             displayMgr.mainMgr.orderMgr.Confirm(cname.getText(), address.getText(), no.getText(),"order.csv");
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
+            cname.setText("Name");
+            no.setText("Phone");
+            address.setText("Address");
             displayMgr.showProductScreen();
 
         }
@@ -278,23 +303,20 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
+        cname.setText("Name");
+        no.setText("Phone");
+        address.setText("Address");
         displayMgr.showSearchScreen();
+        jLabel4.setText("");
     }//GEN-LAST:event_BackActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        // TODO add your handling code here:
         displayMgr.showStartUI();
+        cname.setText("Name");
+        no.setText("Phone");
+        address.setText("Address");
+        jLabel4.setText("");
     }//GEN-LAST:event_HomeActionPerformed
-
-    /*public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PlaceOrderUI(  new DisplayManager() ).setVisible(true);
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
@@ -314,5 +336,6 @@ public class PlaceOrderUI extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField no;
     private javax.swing.JLabel notify;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,19 +6,16 @@
 
 /**
  *
- * @author user
+ * @author sinhaakanksha
  */
 public class StartUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form StartUI
-     */
-   private DisplayManager displayMgr;
-    public StartUI( DisplayManager displayMgr) {
-        this.displayMgr=displayMgr;
+    private DisplayManager displayMgr;
+
+    public StartUI(DisplayManager displayMgr) {
+        this.displayMgr = displayMgr;
         initComponents();
     }
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -31,6 +28,7 @@ public class StartUI extends javax.swing.JFrame {
         ShopkeeperPortal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("TecFresh");
         setPreferredSize(new java.awt.Dimension(650, 600));
 
         jPanel1.setBackground(new java.awt.Color(216, 236, 176));
@@ -66,10 +64,10 @@ public class StartUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(CustomerPortal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(185, 185, 185)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(CustomerPortal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ShopkeeperPortal, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(271, 271, 271)
@@ -108,24 +106,12 @@ public class StartUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CustomerPortalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomerPortalActionPerformed
-        // TODO addToCart your handling code here:
-       displayMgr.showSearchScreen();
+        displayMgr.showSearchScreen();
     }//GEN-LAST:event_CustomerPortalActionPerformed
 
     private void ShopkeeperPortalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShopkeeperPortalActionPerformed
-       
-       displayMgr.showShopkeeperMain();
+        displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_ShopkeeperPortalActionPerformed
-
-    
-    /*public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-            }
-        });
-    }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CustomerPortal;
