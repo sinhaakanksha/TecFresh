@@ -98,6 +98,11 @@ public class SearchProductUI extends javax.swing.JFrame {
         jLabel3.setText("TecFresh");
 
         jTextField1.setText("Enter search query");
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
         Search.setBackground(new java.awt.Color(255, 153, 0));
         Search.setFont(new java.awt.Font("Segoe UI Symbol", 1, 15)); // NOI18N
@@ -234,6 +239,14 @@ public class SearchProductUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * UseCase3-TestCase SearchProduct #2
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
 
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
@@ -275,17 +288,34 @@ public class SearchProductUI extends javax.swing.JFrame {
 
         RowItem.setText(name + "|" + price + "|" + id + "|" + discount);
     }//GEN-LAST:event_TableMouseClicked
-
+    /**
+     * UseCase3-TestCase SearchProduct #2
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
     private void ShowCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowCardActionPerformed
         int selectedRow = Table.getSelectedRow();
         if (selectedRow == -1)
             RowItem.setText("Please select an item first");
         else {
+            jTextField1.setText("Enter search query");
+            alert.setText("");
+            RowItem.setText("");
             displayMgr.CU.cardDetails(id, name, price, discount);
             displayMgr.showCard();
         }
     }//GEN-LAST:event_ShowCardActionPerformed
-
+    /**
+     * UseCase3-TestCase SearchProduct #2
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
     private void ShowProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowProductActionPerformed
         if (displayMgr.mainMgr.orderMgr.getCart().isEmpty())
             RowItem.setText("Add items to the cart first");
@@ -294,6 +324,12 @@ public class SearchProductUI extends javax.swing.JFrame {
             displayMgr.showProductScreen();
         }
     }//GEN-LAST:event_ShowProductActionPerformed
+
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+        // TODO add your handling code here:
+        if(jTextField1.getText().equals("Enter search query"))
+            jTextField1.setText("");
+    }//GEN-LAST:event_jTextField1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel RowItem;

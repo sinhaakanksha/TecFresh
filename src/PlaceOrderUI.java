@@ -147,15 +147,30 @@ public class PlaceOrderUI extends javax.swing.JFrame {
 
         cname.setForeground(new java.awt.Color(102, 102, 102));
         cname.setText("Name");
+        cname.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cnameMouseClicked(evt);
+            }
+        });
 
         no.setForeground(new java.awt.Color(102, 102, 102));
         no.setText("Phone Number");
+        no.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                noMouseClicked(evt);
+            }
+        });
 
         address.setColumns(20);
         address.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         address.setForeground(new java.awt.Color(102, 102, 102));
         address.setRows(5);
         address.setText("Address");
+        address.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addressMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(address);
 
         total.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -268,7 +283,14 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         SelectedRow = jTable1.getSelectedRow();
         jLabel4.setText((String) model.getValueAt(SelectedRow, 0));
     }//GEN-LAST:event_jTable1MouseClicked
-
+    /**
+     * UseCase6-TestCase ManageOrders #3
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         String phoneNumber = no.getText();
         String regex = "(0/91)?[7-9][0-9]{9}";
@@ -317,6 +339,24 @@ public class PlaceOrderUI extends javax.swing.JFrame {
         address.setText("Address");
         jLabel4.setText("");
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void cnameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cnameMouseClicked
+        // TODO add your handling code here:
+        if(cname.getText().equals("Name"))
+            cname.setText("");
+    }//GEN-LAST:event_cnameMouseClicked
+
+    private void noMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_noMouseClicked
+        // TODO add your handling code here:
+        if(no.getText().equals("Phone Number"))
+            no.setText("");
+    }//GEN-LAST:event_noMouseClicked
+
+    private void addressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressMouseClicked
+        // TODO add your handling code here:
+        if(address.getText().equals("Address"))
+            address.setText("");
+    }//GEN-LAST:event_addressMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;

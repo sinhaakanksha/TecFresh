@@ -113,6 +113,72 @@ public class OrderDetailsUI extends javax.swing.JFrame {
             }
         }
     }
+    /**
+     * UseCase6-TestCase ManageOrders #3
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
+    public void changeStatus(String status){
+        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
+        
+        for (int i = 0; i < list.size(); i++) {
+            if(list.get(i).getID() == null ? ord.getID() == null : list.get(i)
+                    .getID().equals(ord.getID())){
+                list.get(i).setStatus(status);
+                
+            }
+           
+        }
+        
+        PrintWriter writer;
+        try {
+            writer = new PrintWriter("order.csv");
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            java.util.logging.Logger.getLogger(OrderDetailsUI.class.getName())
+                    .log(Level.SEVERE, null, ex);
+        }
+        
+       
+        for( int i=0;i<list.size();i++){
+            
+         try {
+            prod1 = list.get(i).getOrder();
+            BufferedWriter bfw = new BufferedWriter(new FileWriter("order.csv",true));
+            bfw.append(list.get(i).getID());
+            
+            bfw.append(',');
+            bfw.append(list.get(i).getName());
+            bfw.append(',');
+            bfw.append(list.get(i).getPhone());
+            bfw.append(',');
+            bfw.append(list.get(i).getAddress());
+            bfw.append(',');
+            bfw.append(list.get(i).getDate());
+            bfw.append(',');
+            bfw.append(list.get(i).getStatus());
+
+            bfw.newLine();
+
+            for (int j = 0; j < prod1.size(); j++) {
+                bfw.append(list.get(i).getID());
+                bfw.append(',');
+                bfw.append(prod1.get(j).NameGetter());
+                bfw.append(',');
+                bfw.append(String.valueOf(prod1.get(j).QuantityGetter()));
+                bfw.append(',');
+                bfw.append(String.valueOf(prod1.get(j).TotalGetter()));
+                bfw.newLine();
+            }
+            bfw.close();
+        } catch (IOException e) {
+            System.out.println("somethings wrong");
+        }}
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -130,6 +196,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         Back = new javax.swing.JButton();
         Status = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -170,7 +237,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
 
         Confirm.setBackground(new java.awt.Color(255, 153, 0));
         Confirm.setFont(new java.awt.Font("Segoe UI Symbol", 1, 16)); // NOI18N
-        Confirm.setText("Confirm");
+        Confirm.setText("Accept");
         Confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmActionPerformed(evt);
@@ -197,6 +264,16 @@ public class OrderDetailsUI extends javax.swing.JFrame {
 
         Status.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         Status.setForeground(new java.awt.Color(255, 0, 0));
+        Status.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jButton1.setBackground(new java.awt.Color(255, 153, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI Symbol", 1, 16)); // NOI18N
+        jButton1.setText("Reject");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,15 +297,15 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Confirm)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(161, 161, 161))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +326,11 @@ public class OrderDetailsUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Status, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Confirm)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Confirm)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(2, 2, 2)))
                 .addContainerGap())
         );
 
@@ -269,78 +350,40 @@ public class OrderDetailsUI extends javax.swing.JFrame {
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         Status.setText("ORDER CONFIRMED");
-        displayMgr.mainMgr.catalogMgr.updateStock(ord);
-        
-        ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
-        for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getID() == null ? ord.getID() == null : list.get(i).getID().equals(ord.getID())){
-                list.get(i).setStatus("confirmed");
-                
-            }
-           
-        }
-        
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter("order.csv");
-            writer.print("");
-            writer.close();
-        } catch (FileNotFoundException ex) {
-            java.util.logging.Logger.getLogger(OrderDetailsUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       
-        for( int i=0;i<list.size();i++){
-            
-         try {
-            prod1 = list.get(i).getOrder();
-            BufferedWriter bfw = new BufferedWriter(new FileWriter("order.csv",true));
-            bfw.append(list.get(i).getID());
-            
-            bfw.append(',');
-            bfw.append(list.get(i).getName());
-            bfw.append(',');
-            bfw.append(list.get(i).getPhone());
-            bfw.append(',');
-            bfw.append(list.get(i).getAddress());
-            bfw.append(',');
-            bfw.append(list.get(i).getDate());
-            bfw.append(',');
-            bfw.append(list.get(i).getStatus());
-
-            bfw.newLine();
-
-            for (int j = 0; j < prod1.size(); j++) {
-                bfw.append(list.get(i).getID());
-                bfw.append(',');
-                bfw.append(prod1.get(j).NameGetter());
-                bfw.append(',');
-                bfw.append(String.valueOf(prod1.get(j).QuantityGetter()));
-                bfw.append(',');
-                bfw.append(String.valueOf(prod1.get(j).TotalGetter()));
-                bfw.newLine();
-            }
-            bfw.close();
-        } catch (IOException e) {
-            System.out.println("somethings wrong");
-        }}
-        
+        displayMgr.ODU.changeStatus("Accepted");
+        displayMgr.mainMgr.catalogMgr.updateStock(ord);     
         displayMgr.mainMgr.catalogMgr.doHousekeeping("catalog.csv");
     }//GEN-LAST:event_ConfirmActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        Status.setText("");
         displayMgr.showOrderScreen();
     }//GEN-LAST:event_BackActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        Status.setText("");
         displayMgr.showShopkeeperMain();
     }//GEN-LAST:event_HomeActionPerformed
+    /**
+     * UseCase6-TestCase ManageOrders #3
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Status.setText("ORDER REJECTED");
+        displayMgr.ODU.changeStatus("Rejected");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton Confirm;
     private javax.swing.JButton Home;
     private javax.swing.JLabel Status;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

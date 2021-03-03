@@ -269,6 +269,14 @@ public class AddProductUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * UseCase5 - TestCase ManageCatalog #1
+     * This part of the code has been
+     * added/modified to fix the bugs or
+     * issues raised in the previous version
+     * of the software
+     * @param evt 
+     */
     private void AddToStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToStockActionPerformed
         boolean flag = false;
         String str = name.getText();
