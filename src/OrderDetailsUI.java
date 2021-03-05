@@ -34,7 +34,7 @@ public class OrderDetailsUI extends javax.swing.JFrame {
         int j = 0;
 
         ArrayList<Order> list = displayMgr.mainMgr.orderMgr.viewOrder("order.csv");
-
+        
         jPanel3.removeAll();
         jPanel3.revalidate();
         jPanel3.repaint();

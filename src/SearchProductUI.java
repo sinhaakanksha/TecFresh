@@ -167,8 +167,8 @@ public class SearchProductUI extends javax.swing.JFrame {
                         .addGap(19, 19, 19)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
@@ -248,7 +248,7 @@ public class SearchProductUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-
+        RowItem.setText("");
         DefaultTableModel model = (DefaultTableModel) Table.getModel();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -297,6 +297,7 @@ public class SearchProductUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void ShowCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowCardActionPerformed
+        alert.setText("");
         int selectedRow = Table.getSelectedRow();
         if (selectedRow == -1)
             RowItem.setText("Please select an item first");
@@ -317,6 +318,7 @@ public class SearchProductUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void ShowProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowProductActionPerformed
+        alert.setText("");
         if (displayMgr.mainMgr.orderMgr.getCart().isEmpty())
             RowItem.setText("Add items to the cart first");
         else {

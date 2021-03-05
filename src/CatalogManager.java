@@ -18,6 +18,7 @@ public class CatalogManager {
 
     public CatalogManager(MainManager mMgr) {
         this.mMgr = mMgr;
+        catalogInit();
     }
 
     public void catalogInit() {
@@ -38,13 +39,12 @@ public class CatalogManager {
     }
 
     public void addProduct(Catalog cg) {
-
+        prod1 = this.getAllProducts();
         this.prod1.add(cg);
     }
 
     public void editProduct(int index, Catalog cg) {
         this.prod1.set(index, cg);
-
     }
 
     public boolean doHousekeeping(String filename) {

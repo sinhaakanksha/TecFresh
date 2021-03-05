@@ -1,9 +1,11 @@
+
+import java.util.ArrayList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Mistuk2000
@@ -15,7 +17,6 @@ public class AddProductUI extends javax.swing.JFrame {
     public AddProductUI(DisplayManager displayMgr) {
         initComponents();
         this.displayMgr = displayMgr;
-
     }
 
     @SuppressWarnings("unchecked")
@@ -138,9 +139,9 @@ public class AddProductUI extends javax.swing.JFrame {
         Home.setBackground(new java.awt.Color(255, 153, 0));
         Home.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         Home.setText("HOME");
-        Home.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HomeMouseClicked(evt);
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
             }
         });
 
@@ -270,36 +271,48 @@ public class AddProductUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * UseCase5 - TestCase ManageCatalog #1
-     * This part of the code has been
-     * added/modified to fix the bugs or
-     * issues raised in the previous version
-     * of the software
-     * @param evt 
+     * UseCase5 - TestCase ManageCatalog #4 This part of the code has been
+     * added/modified to fix the bugs or issues raised in the previous version
+     * of the software(Release0.2)
+     *
+     * @param evt
      */
     private void AddToStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToStockActionPerformed
         boolean flag = false;
-        String str = name.getText();
+        String str = name.getText().trim();
         str = str.toUpperCase();
         int l = str.length();
+        
+
         for (int i = 0; i < l; i++) {
-            char c = str.charAt(i);
-            if (c < 65 || c > 91) {
-                pNameWarning.setText("Enter correct name");
-                pNameWarning.setVisible(true);
-                flag = true;
+                char c = str.charAt(i);
+                if (c < 65 || c > 122) {
+                    pNameWarning.setText("Enter correct name");
+                    pNameWarning.setVisible(true);
+                    flag = true;
+                }
             }
 
-        }
-        if (str.equals("")) {
-            pNameWarning.setText("Enter correct name");
+        if(str==""){
+            pNameWarning.setText("Name can't be empty");
             pNameWarning.setVisible(true);
+            flag = true;
         }
 
         str = id.getText();
         if (str.equals("")) {
-            idWarning.setText("Enter correct ID");
+            idWarning.setText("ID can't be empty");
             idWarning.setVisible(true);
+            flag = true;
+        } else {
+            ArrayList<Catalog> tempList = displayMgr.mainMgr.searchMgr.getProductList();
+            for (Catalog it : tempList) {
+                if (it.getProductId().equals(str)) {
+                    idWarning.setText("ID already taken");
+                    idWarning.setVisible(true);
+                    flag = true;
+                }
+            }
         }
 
         try {
@@ -346,6 +359,12 @@ public class AddProductUI extends javax.swing.JFrame {
         }
 
         if (flag == false) {
+            pNameWarning.setText("");
+            idWarning.setText("");
+            qtWarning.setText("");
+            ppuWarning.setText("");
+            discWarning.setText("");
+
             Catalog p = new Catalog();
             p.setName(name.getText());
             p.setPrice(Integer.parseInt(price.getText()));
@@ -359,12 +378,11 @@ public class AddProductUI extends javax.swing.JFrame {
                 case 2:
                     p.setCategory("Dairy");
                     break;
-
                 case 3:
                     p.setCategory("Grocery");
                     break;
-
             }
+
             p.setDiscount(Integer.parseInt(discount.getText()));
             p.setStock(Integer.parseInt(stock.getText()));
 
@@ -377,9 +395,16 @@ public class AddProductUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AddToStockActionPerformed
 
-    private void HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HomeMouseClicked
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        pNameWarning.setText("");
+        idWarning.setText("");
+        qtWarning.setText("");
+        ppuWarning.setText("");
+        discWarning.setText("");
+        msgLabel.setText("");
         displayMgr.showShopkeeperMain();
-    }//GEN-LAST:event_HomeMouseClicked
+    }//GEN-LAST:event_HomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToStock;

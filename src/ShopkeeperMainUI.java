@@ -187,6 +187,7 @@ public class ShopkeeperMainUI extends JFrame {
     }//GEN-LAST:event_ViewEditInventoryActionPerformed
 
     private void AddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddProductActionPerformed
+        displayMgr.mainMgr.catalogMgr.catalogInit();
         displayMgr.ShowCatalogScreen();
     }//GEN-LAST:event_AddProductActionPerformed
 

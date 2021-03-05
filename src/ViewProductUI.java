@@ -316,7 +316,11 @@ public class ViewProductUI extends javax.swing.JFrame {
 
             model.removeRow(i);
         }
-
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
     }//GEN-LAST:event_RemoveProductActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -408,6 +412,11 @@ public class ViewProductUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         dMgr.mainMgr.catalogMgr.doHousekeeping("catalog.csv");
         dMgr.showShopkeeperMain();
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
